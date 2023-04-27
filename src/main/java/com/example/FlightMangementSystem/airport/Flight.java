@@ -11,19 +11,26 @@ import java.util.List;
 //The Logic is embedded with addPassenger() and removePassenger() methods.
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Flight {
+//@NoArgsConstructor
+//@AllArgsConstructor
+public abstract class Flight {
 
     private String id;
-    private List<Passenger> passengerList = new ArrayList<Passenger>();
-    private  String flightType;
+    public List<Passenger> passengerList = new ArrayList<Passenger>();
 
-    public Flight(String id, String flightType) {
-        this.id = id;
-        this.flightType = flightType;
-        this.passengerList = new ArrayList<>();
+    public Flight(String id) {
+
     }
+    //private  String flightType;
+
+//    public Flight(String id ) {
+//        this.id = id;
+//        //this.flightType = flightType;
+//
+//    }
+//    public String getId(){
+//        return  id;
+//    }
 //
 //    public boolean addPassenger(Passenger passenger) {
 //        if (this.flightType.equals("Business")) {
@@ -35,46 +42,48 @@ public class Flight {
 //        return true;
 //    }
 
-    public List<Passenger> getPassengerList() {
-        return passengerList;
-    }
+//    public List<Passenger> getPassengerList() {
+//        return passengerList;
+//    }
 
-    public boolean addPassenger(Passenger passenger) {
-        if (this.flightType.equals("Business")) {
-            if (!passenger.isVip()) {
-                return false;
-            }
-        }
+//    public boolean addPassenger(Passenger passenger) {
+//        if (this.flightType.equals("Business")) {
+//            if (!passenger.isVip()) {
+//                return false;
+//            }
+//        }
 
-        switch (flightType){
-            case "Economy":
-                return passengerList.add(passenger);
+    public abstract boolean addPassenger(Passenger passenger);
+//        switch (flightType){
+//            case "Economy":
+//                return passengerList.add(passenger);
+//
+//            case "Business":
+//                if(passenger.isVip()) {
+//                    return passengerList.add(passenger);
+//                }
+//                return false;
+//            default:
+//                throw new RuntimeException("Unknown type:" + flightType);
+//        }
+//
+//    }
 
-            case "Business":
-                if(passenger.isVip()) {
-                    return passengerList.add(passenger);
-                }
-                return false;
-            default:
-                throw new RuntimeException("Unknown type:" + flightType);
-        }
-
-    }
-
-    public boolean removePassenger(Passenger passenger) {
-        if (passenger == null) {
-            return false;
-        }
-        switch (flightType){
-            case "Economy":
-                if(!passenger.isVip()){
-                    return passengerList.remove(passenger);
-                }
-                return  false;
-            case "Business":
-                return  false;
-            default:
-                throw  new RuntimeException("Unknown type:" + flightType);
-        }
-    }
+    public  abstract  boolean removePassenger(Passenger passenger);
+//    {
+//        if (passenger == null) {
+//            return false;
+//        }
+//        switch (flightType){
+//            case "Economy":
+//                if(!passenger.isVip()){
+//                    return passengerList.remove(passenger);
+//                }
+//                return  false;
+//            case "Business":
+//                return  false;
+//            default:
+//                throw  new RuntimeException("Unknown type:" + flightType);
+//        }
+//    }
 }
