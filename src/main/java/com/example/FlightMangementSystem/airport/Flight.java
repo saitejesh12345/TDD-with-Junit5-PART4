@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 //Flight class containing field as id, list of passengers and type of flight ie flightType.
 //The Logic is embedded with addPassenger() and removePassenger() methods.
@@ -16,8 +15,8 @@ import java.util.List;
 public abstract class Flight {
 
     private String id;
-    public List<Passenger> passengerList = new ArrayList<Passenger>();
-
+    //public List<Passenger> passengerList = new ArrayList<Passenger>();
+    public Set<Passenger> passengersSet = new HashSet<>();
     public Flight(String id) {
 
     }
@@ -28,10 +27,15 @@ public abstract class Flight {
 //        //this.flightType = flightType;
 //
 //    }
-//    public String getId(){
-//        return  id;
-//    }
-//
+    public String getId() {
+        return id;
+    }
+
+    public Set<Passenger> getPassengersSet() {
+
+        return Collections.unmodifiableSet(passengersSet);
+    }
+    //
 //    public boolean addPassenger(Passenger passenger) {
 //        if (this.flightType.equals("Business")) {
 //            if (!passenger.isVip()) {
